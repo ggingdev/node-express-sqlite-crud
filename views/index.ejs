@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내 페이지</title>
+</head>
+<body>
+    <h1>댓글 목록</h1>
+    <ul>
+    <% for (comment of comments)  { %>
+        <li><%= comment.id %><%= comment.content %></li>
+       <form action="/update/<%= comment.id %>" method="post">
+            <input type="text" name="content">
+            <input type="submit" value="수정하기">
+        </form>
+        <!-- form의 데이터를 요청하는 주소를 "/delete/<%= comment.id %>" 로 설정합니다. -->
+        <!-- 경로에 어떤 댓글을 삭제할 지에 대한 정보를 넘겨주기 위해 comment.id로 대상을 특정했습니다. -->
+        <!-- 삭제를 위한 method 옵션은 "post"를 사용합니다.  -->
+        <form action="/delete/<%= comment.id %>" method="post">
+            <input type="submit" value="삭제하기">
+        </form>
+    <% } %>
+    </ul>
+    <hr>
+    <form action="/create" method="post">
+        <input type="text" name="content">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
